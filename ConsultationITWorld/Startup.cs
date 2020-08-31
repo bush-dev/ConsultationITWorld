@@ -11,6 +11,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
+using ConsultationITWorld.Services;
+using ConsultationITWorld.Interfaces;
 
 namespace ConsultationITWorld
 {
@@ -27,26 +31,25 @@ namespace ConsultationITWorld
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ConsultationITWorldDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("LocalDB")));
+            services.AddControllers();
+            services.AddTransient<ICategoryService,CategoryService>();
+            services.AddTransient<IReviewService, ReviewService>();
+            services.AddTransient<IOfferService, OfferService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-           
+            //   app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+            app.UseHttpsRedirection();
             app.UseRouting();
-
+            
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

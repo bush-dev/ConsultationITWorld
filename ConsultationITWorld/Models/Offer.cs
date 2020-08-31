@@ -11,7 +11,7 @@ namespace ConsultationITWorld.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Tiltle { get; set; }
+        public string Title{ get; set; }
         public int Prize { get; set; }
         public string Description { get; set; }
         [ForeignKey("User")]

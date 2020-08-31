@@ -3,14 +3,16 @@ using ConsultationITWorld.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConsultationITWorld.Migrations
 {
     [DbContext(typeof(ConsultationITWorldDbContext))]
-    partial class ConsultationITWorldDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200830145327_SmallChangesInOffer")]
+    partial class SmallChangesInOffer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
