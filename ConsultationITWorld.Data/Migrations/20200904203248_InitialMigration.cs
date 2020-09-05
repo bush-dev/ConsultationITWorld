@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ConsultationITWorld.Migrations
+namespace ConsultationITWorld.Data.Migrations
 {
     public partial class InitialMigration : Migration
     {
@@ -38,7 +38,7 @@ namespace ConsultationITWorld.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Tiltle = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
                     Prize = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     IdUser = table.Column<int>(nullable: false),

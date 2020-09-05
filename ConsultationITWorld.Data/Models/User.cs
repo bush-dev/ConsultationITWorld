@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConsultationITWorld.Models
+namespace ConsultationITWorld.Data.Models
 {
     public class User
     {

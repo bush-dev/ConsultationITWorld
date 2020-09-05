@@ -1,15 +1,13 @@
-﻿using ConsultationITWorld.Context;
-using ConsultationITWorld.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
+﻿using ConsultationITWorld.Core.Interfaces;
+using ConsultationITWorld.Data.Context;
+using ConsultationITWorld.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
-namespace ConsultationITWorld.Services
+namespace ConsultationITWorld.Core.Services
 {
     public class CategoryService : ICategoryService
     {

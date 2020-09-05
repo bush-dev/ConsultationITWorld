@@ -5,13 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConsultationITWorld.Models
+namespace ConsultationITWorld.Data.Models
 {
     public class Offer
     {
         [Key]
         public int Id { get; set; }
-        public string Title{ get; set; }
+        public string Title { get; set; }
         public int Prize { get; set; }
         public string Description { get; set; }
         [ForeignKey("User")]

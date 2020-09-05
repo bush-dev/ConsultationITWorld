@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ConsultationITWorld.Context;
+using ConsultationITWorld.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,8 +13,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
-using ConsultationITWorld.Services;
-using ConsultationITWorld.Interfaces;
+using ConsultationITWorld.Core.Services;
+using ConsultationITWorld.Core.Interfaces;
 
 namespace ConsultationITWorld
 {

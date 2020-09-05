@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ConsultationITWorld.Models;
-using ConsultationITWorld.Services;
+using ConsultationITWorld.Data.Models;
+using ConsultationITWorld.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ConsultationITWorld.Core.Interfaces;
 
 namespace ConsultationITWorld.Controllers
 { 

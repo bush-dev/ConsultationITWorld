@@ -1,10 +1,10 @@
-﻿using ConsultationITWorld.Models;
+﻿using ConsultationITWorld.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConsultationITWorld.Interfaces
+namespace ConsultationITWorld.Core.Interfaces
 {
     public interface IOfferService
     {

@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConsultationITWorld.Models
+namespace ConsultationITWorld.Data.Models
 {
-    public class MainTechnology
+    public class Category
     {
         [Key]
         public int Id { get; set; }

@@ -1,7 +1,7 @@
-﻿using ConsultationITWorld.Models;
+﻿using ConsultationITWorld.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ConsultationITWorld.Context
+namespace ConsultationITWorld.Data.Context
 {
     public class ConsultationITWorldDbContext : DbContext 
     {

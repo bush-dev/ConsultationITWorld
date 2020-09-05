@@ -1,13 +1,13 @@
-﻿using ConsultationITWorld.Context;
-using ConsultationITWorld.Interfaces;
-using ConsultationITWorld.Models;
+﻿using ConsultationITWorld.Data.Context;
+using ConsultationITWorld.Core.Interfaces;
+using ConsultationITWorld.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
-namespace ConsultationITWorld.Services
+namespace ConsultationITWorld.Core.Services
 {
     public class ReviewService : IReviewService
     {
@@ -30,7 +30,7 @@ namespace ConsultationITWorld.Services
             reviewToUpdate.Description = review.Description;
             reviewToUpdate.IdOffer = review.IdOffer;
             _dbContext.SaveChanges();
-            
+
         }
 
         public void DeleteReview(int idReview)

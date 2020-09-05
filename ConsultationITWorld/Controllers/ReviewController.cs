@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ConsultationITWorld.Interfaces;
-using ConsultationITWorld.Models;
+using ConsultationITWorld.Core.Interfaces;
+using ConsultationITWorld.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConsultationITWorld.Controllers

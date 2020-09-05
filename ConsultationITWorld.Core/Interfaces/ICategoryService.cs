@@ -1,11 +1,11 @@
-﻿using ConsultationITWorld.Models;
+﻿using ConsultationITWorld.Data.Models;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConsultationITWorld
+namespace ConsultationITWorld.Core.Interfaces
 {
     public interface ICategoryService
     {
