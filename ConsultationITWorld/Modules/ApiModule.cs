@@ -17,6 +17,7 @@ namespace ConsultationITWorld.Modules
             builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerDependency();
             builder.RegisterType<OfferService>().As<IOfferService>().InstancePerDependency();
             builder.RegisterType<ReviewService>().As<IReviewService>().InstancePerDependency();
+            builder.RegisterType<UserService>().As<IUserService>().InstancePerDependency();
         }
     }
 }
