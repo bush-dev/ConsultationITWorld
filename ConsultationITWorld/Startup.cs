@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
 using ConsultationITWorld.Core.Services;
 using ConsultationITWorld.Core.Interfaces;
+using Autofac;
+using System;
 
 namespace ConsultationITWorld
 {
@@ -32,9 +34,16 @@ namespace ConsultationITWorld
         {
             services.AddDbContext<ConsultationITWorldDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("LocalDB")));
             services.AddControllers();
-            services.AddTransient<ICategoryService,CategoryService>();
-            services.AddTransient<IReviewService, ReviewService>();
-            services.AddTransient<IOfferService, OfferService>();
+            services.AddRouting();
+
+
+
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            builder.RegisterAssemblyModules(assemblies);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
