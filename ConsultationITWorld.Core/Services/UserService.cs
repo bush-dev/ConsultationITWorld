@@ -61,6 +61,11 @@ namespace ConsultationITWorld.Core.Services
             return _dbContext.Users.Find(id);
         }
 
+        public List<User> GetUsers()
+        {
+            return _dbContext.Users.ToList();
+        }
+
         private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
         {
             if (password == null) throw new ArgumentNullException(nameof(password));

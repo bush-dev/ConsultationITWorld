@@ -38,7 +38,17 @@ namespace ConsultationITWorld
         {
             services.AddDbContext<ConsultationITWorldDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("LocalDB")));
             services.AddControllers();
-            services.AddRouting();
+            services.AddMvc(option => option.EnableEndpointRouting = false);
+
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("ConsultationITWorld", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "1.0",
+                    Title = "ConsultationITWorld",
+                });
+            });
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
@@ -92,13 +102,13 @@ namespace ConsultationITWorld
             app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseHttpsRedirection();
-            app.UseRouting();
-            
-            app.UseEndpoints(endpoints =>
+
+            app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                c.SwaggerEndpoint("/swagger/ConsultationITWorld/swagger.json", "ConsultationITWorld Server");
             });
         }
     }

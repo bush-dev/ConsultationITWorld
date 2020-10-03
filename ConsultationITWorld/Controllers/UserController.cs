@@ -16,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ConsultationITWorld.Controllers
 {
+    [Route("[controller]")]
     public class UserController : Controller
     {
         private readonly IUserService _userService;
@@ -27,6 +28,7 @@ namespace ConsultationITWorld.Controllers
             _appSettings = appSettings.Value;
         }
 
+        [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody] UserViewModel userViewModel)
         {
             var user = _userService.Authenticate(userViewModel.Login, userViewModel.Password);
@@ -60,7 +62,7 @@ namespace ConsultationITWorld.Controllers
             });
         }
 
-        [AllowAnonymous]
+        [HttpPost("register")]
         public IActionResult Register([FromBody] UserViewModel userViewModel)
         {
             User user = new User()
@@ -77,6 +79,14 @@ namespace ConsultationITWorld.Controllers
             _userService.Create(user, userViewModel.Password);
 
             return Ok();
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var users = _userService.GetUsers();
+
+            return Ok(users);
         }
     }
 }
