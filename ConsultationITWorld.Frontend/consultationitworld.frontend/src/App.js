@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Routes from "./components/Routes";
+import "./App.css";
+import LoginContainer from "./containers/LoginContainer";
+import MenuContainer from "./containers/MenuContainer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Router>
+      <div className="App">
+        <div className="Header">
+          <MenuContainer/>
+        </div>
+        <div className="Body">
+          <Routes/>
+        </div>
+        <div className="Footer">©2020 ConsultationITWorld. All rights reserved.</div>
+      </div>
+    </Router>
+    )
+  } 
 }
 
 export default App;

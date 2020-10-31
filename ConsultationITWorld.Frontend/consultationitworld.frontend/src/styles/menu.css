@@ -1,0 +1,12 @@
+.flexgrow-1 {
+  flex-grow: 1;
+}
+
+.color-white{
+  color: #fff !important;
+} 
+
+.brand {
+    margin-right: 2rem !important;
+    color: #fff !important;
+}

@@ -21,6 +21,7 @@ using ConsultationITWorld.Core.Helpers;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Logging;
 
 namespace ConsultationITWorld
 {
@@ -87,6 +88,8 @@ namespace ConsultationITWorld
                     ValidateAudience = false
                 };
             });
+
+            IdentityModelEventSource.ShowPII = true;
 
         }
 
