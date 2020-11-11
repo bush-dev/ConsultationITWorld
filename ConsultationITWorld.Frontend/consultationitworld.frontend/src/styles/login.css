@@ -3,3 +3,7 @@
     display: inline-block !important;
     margin-top: 4rem;
 }
+
+.errorUsername {
+    color: red;
+}

@@ -6,7 +6,12 @@
   color: #fff !important;
 } 
 
-.brand {
-    margin-right: 2rem !important;
+.brandLogin {
+    margin-right: 39rem !important;
     color: #fff !important;
+}
+
+.brandLogout {
+  margin-right: 83rem !important;
+  color: #fff !important;
 }

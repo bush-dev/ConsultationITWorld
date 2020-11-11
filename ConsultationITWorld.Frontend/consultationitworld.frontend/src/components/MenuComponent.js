@@ -7,11 +7,12 @@ class MenuComponent extends Component {
     render() {
         return(
             <Navbar  expand="lg">
-                <Navbar.Brand className="brand">ConsultationITWorld</Navbar.Brand>
+                <Navbar.Brand className= {this.props.isLogout ? "brandLogout" : "brandLogin"}>ConsultationITWorld</Navbar.Brand>
                 <Navbar.Collapse id="basic-navbar-nav">
+                
                 {!this.props.isLogout 
                 ? ( 
-                <div>
+                    <Form inline>
                     <Nav className="mr-auto">
                         <Nav.Link className="color-white"> Home </Nav.Link>
                         <Nav.Link className="color-white"> Offers </Nav.Link>
@@ -19,16 +20,18 @@ class MenuComponent extends Component {
                         <Nav.Link className="color-white"> My profile </Nav.Link>
                         <Nav.Link className="color-white"> FAQ </Nav.Link>
                     </Nav>
-                    <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="dark">Search</Button>
-                    </Form> 
-                </div> )  
+                </Form> )  
                 : <div></div>
                 }
+                <Form inline>
                     <Form inline>
                         <Button variant="link" onClick={this.props.handleLoginLogout}> {this.props.isLogout ? "Log in" : "Log out"}</Button>
                     </Form>
+                    <Form inline>
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2"/>
+                        <Button variant="dark">Search</Button>
+                    </Form>
+                </Form> 
                 </Navbar.Collapse>
             </Navbar>
             

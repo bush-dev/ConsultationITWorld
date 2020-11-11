@@ -11,6 +11,8 @@ class LoginContainer extends Component {
         password: "",
         isLogged: false,
         user: [],
+        errorLogin: false,
+        errorPassword: false,
 
         isOpenedRegisterModal: false,
         registerUsername: "",
@@ -20,7 +22,16 @@ class LoginContainer extends Component {
         registerAddress: "",
         registerCountry: "",
         registerEmail: "",
-        registerPhoneNumber: ""
+        registerPhoneNumber: "",
+        errorRegisterUsername: false,
+        errorRegisterPassword: false,
+        errorRegisterFirstName: false,
+        errorRegisterLastName: false,
+        errorRegisterAddress: false,
+        errorRegisterCountry: false,
+        errorRegisterEmail: false,
+        errorRegisterPhoneNumber: false
+
     }
 
     handleUsernameChange = e => {
@@ -63,9 +74,16 @@ class LoginContainer extends Component {
         this.setState({ registerPhoneNumber: e.target.value })
     }
 
+    handleOpenRegisterModal = () => {
+        this.setState({ isOpenedRegisterModal: true})
+    }
+
+    handleCloseRegisterModal = () => {
+        this.setState({ isOpenedRegisterModal: false})
+    }
+
     handleLoginSubmit = e => {
         e.preventDefault();
-        debugger;
         const data = {
             login: this.state.username,
             password: this.state.password
@@ -78,19 +96,39 @@ class LoginContainer extends Component {
             }
         };
 
-        axios
-        .post(BASE_URL + "user/authenticate", data, axiosConfig)
-        .then(response => {
-            debugger;
-            if(response.data) {
-                this.setState({user: response.data, isLogged: true});
-                this.redirectToHome();
-            }
-            else {
-                console.log("We have a problem!")
-            }
-        });
+        if(this.handleValidationLogin())
+        {
+
+            axios
+            .post(BASE_URL + "user/authenticate", data, axiosConfig)
+            .then(response => {
+                if(response.data) {
+                    this.setState({user: response.data, isLogged: true});
+                    this.redirectToHome();
+                }
+                else {
+                    console.log("We have a problem!")
+                }
+            });
+        }
     };
+
+    handleValidationLogin() {
+        if(!this.state.username || !this.state.password)
+        {
+            if(!this.state.username)
+                this.setState({errorLogin: true})
+            else
+                this.setState({errorLogin: false})
+
+            if(!this.state.password)
+                this.setState({errorPassword: true})
+            else
+                this.setState({errorPassword: false})
+            return false;
+        }
+        return true;
+    }
 
     redirectToHome = e => {
         this.saveDataToLocalStorage();
@@ -104,17 +142,11 @@ class LoginContainer extends Component {
         });
     };
 
-    handleOpenRegisterModal = e => {
-        debugger;
-        this.setState({isOpenedRegisterModal: true})
-    }
-
     saveDataToLocalStorage = () => {
         localStorage.setItem("token", JSON.stringify(this.state.user.token));
         localStorage.setItem("username", JSON.stringify(this.state.user.username));
         localStorage.setItem("firstName", JSON.stringify(this.state.user.firstName));
         localStorage.setItem("lastName", JSON.stringify(this.state.user.login));
-        debugger;
       };
 
     
@@ -139,18 +171,69 @@ class LoginContainer extends Component {
             }
         };
 
-        axios
-        .post(BASE_URL + "user/register", data, axiosConfig)
-        .then(response => {
-            debugger;
-            if(response.data) {
-                this.redirectToHome();
-            }
-            else {
-                console.log("We have a problem!")
-            }
-        });
+        if(this.handleValidationRegistration())
+        {
+            axios
+            .post(BASE_URL + "user/register", data, axiosConfig)
+            .then(response => {
+                if(response.data) {
+                    this.redirectToHome();
+                }
+                else {
+                    console.log("We have a problem!")
+                }
+            });
+        }
     };
+
+    handleValidationRegistration() {
+        if(!this.state.registerUsername || !this.state.registerPassword || !this.state.registerFirstName || !this.state.registerLastName || !this.state.registerAddress || 
+            !this.state.registerCountry || !this.state.registerEmail || !this.state.registerPhoneNumber)
+        {
+            if(!this.state.registerUsername)
+                this.setState({errorRegisterUsername: true})
+            else
+                this.setState({errorRegisterUsername: false})
+
+            if(!this.state.registerPassword)
+                this.setState({errorRegisterPassword: true})
+            else
+                this.setState({errorRegisterPassword: false})
+            
+            if(!this.state.registerFirstName)
+                this.setState({errorRegisterFirstName: true})
+            else
+                this.setState({errorRegisterFirstName: false})
+            
+            if(!this.state.registerLastName)
+                this.setState({errorRegisterLastName: true})
+            else
+                this.setState({errorRegisterLastName: false})
+            
+            if(!this.state.registerAddress)
+                this.setState({errorRegisterAddress: true})
+            else
+                this.setState({errorRegisterAddress: false})
+
+            if(!this.state.registerCountry)
+                this.setState({errorRegisterCountry: true})
+            else
+                this.setState({errorRegisterCountry: false})
+            
+            if(!this.state.registerEmail)
+                this.setState({errorRegisterEmail: true})
+            else
+                this.setState({errorRegisterEmail: false})
+
+            if(!this.state.registerPhoneNumber)
+                this.setState({errorRegisterPhoneNumber: true})
+            else
+                this.setState({errorRegisterPhoneNumber: false})
+
+            return false;
+        }
+        return true;
+    }
 
 
 
@@ -162,6 +245,8 @@ class LoginContainer extends Component {
                 handlePasswordChange={this.handlePasswordChange}
                 handleUsernameChange={this.handleUsernameChange}
                 handleOpenRegisterModal={this.handleOpenRegisterModal}
+                errorLogin={this.state.errorLogin}
+                errorPassword={this.state.errorPassword}
                 />
                 <RegisterComponent 
                 isOpenedRegisterModal={this.state.isOpenedRegisterModal} 
@@ -174,6 +259,15 @@ class LoginContainer extends Component {
                 handleRegisterCountryChange={this.handleRegisterCountryChange}
                 handleRegisterEmailChange={this.handleRegisterEmailChange}
                 handleRegisterPhoneNumberChange={this.handleRegisterPhoneNumberChange}
+                handleCloseRegisterModal={this.handleCloseRegisterModal}
+                errorRegisterUsername={this.state.errorRegisterUsername}
+                errorRegisterPassword={this.state.errorRegisterPassword}
+                errorRegisterFirstName={this.state.errorRegisterFirstName}
+                errorRegisterLastName={this.state.errorRegisterLastName}
+                errorRegisterAddress={this.state.errorRegisterAddress}
+                errorRegisterCountry={this.state.errorRegisterCountry}
+                errorRegisterEmail={this.state.errorRegisterEmail}
+                errorRegisterPhoneNumber={this.state.errorRegisterPhoneNumber}
                 />
             </div>
         );

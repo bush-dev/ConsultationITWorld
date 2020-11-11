@@ -5,3 +5,7 @@
 .modalRegister {
     text-align: center;
 }
+
+.errorRegister {
+    color: red;
+}
