@@ -76,9 +76,9 @@ namespace ConsultationITWorld.Controllers
                 PhoneNumber = userViewModel.PhoneNumber
             };
 
-            _userService.Create(user, userViewModel.Password);
+            var createdUser =  _userService.Create(user, userViewModel.Password);
 
-            return Ok();
+            return Ok(createdUser);
         }
 
         [HttpGet]

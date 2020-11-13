@@ -9,3 +9,9 @@
 .errorRegister {
     color: red;
 }
+
+.modalHeaderRegister {
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}

@@ -79,7 +79,17 @@ class LoginContainer extends Component {
     }
 
     handleCloseRegisterModal = () => {
-        this.setState({ isOpenedRegisterModal: false})
+        this.setState({ 
+            isOpenedRegisterModal: false,
+            errorRegisterUsername: false,
+            errorRegisterPassword: false,
+            errorRegisterFirstName: false,
+            errorRegisterLastName: false,
+            errorRegisterAddress: false,
+            errorRegisterCountry: false,
+            errorRegisterEmail: false,
+            errorRegisterPhoneNumber: false
+        })
     }
 
     handleLoginSubmit = e => {
@@ -177,7 +187,7 @@ class LoginContainer extends Component {
             .post(BASE_URL + "user/register", data, axiosConfig)
             .then(response => {
                 if(response.data) {
-                    this.redirectToHome();
+                    this.setState({isOpenedRegisterModal: false});
                 }
                 else {
                     console.log("We have a problem!")

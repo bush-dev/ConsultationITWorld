@@ -7,7 +7,7 @@ class LoginComponent extends Component {
     render() {
         return (
             <Card className="cardLogin">
-                <Card.Header>
+                <Card.Header className="cardHeaderLogin">
                     <Card.Title>Log in</Card.Title>
                 </Card.Header>
                 <Card.Body>
