@@ -30,7 +30,8 @@ class LoginContainer extends Component {
         errorRegisterAddress: false,
         errorRegisterCountry: false,
         errorRegisterEmail: false,
-        errorRegisterPhoneNumber: false
+        errorRegisterPhoneNumber: false,
+        showAlertSuccessfulRegistration: false
 
     }
 
@@ -108,7 +109,6 @@ class LoginContainer extends Component {
 
         if(this.handleValidationLogin())
         {
-
             axios
             .post(BASE_URL + "user/authenticate", data, axiosConfig)
             .then(response => {
@@ -187,7 +187,7 @@ class LoginContainer extends Component {
             .post(BASE_URL + "user/register", data, axiosConfig)
             .then(response => {
                 if(response.data) {
-                    this.setState({isOpenedRegisterModal: false});
+                    this.setState({isOpenedRegisterModal: false, showAlertSuccessfulRegistration: true});
                 }
                 else {
                     console.log("We have a problem!")
@@ -245,6 +245,10 @@ class LoginContainer extends Component {
         return true;
     }
 
+    handleCloseAlertSuccessfulRegistration = e => {
+        this.setState({showAlertSuccessfulRegistration: false})
+    }
+
 
 
     render() {
@@ -257,6 +261,8 @@ class LoginContainer extends Component {
                 handleOpenRegisterModal={this.handleOpenRegisterModal}
                 errorLogin={this.state.errorLogin}
                 errorPassword={this.state.errorPassword}
+                showAlertSuccessfulRegistration={this.state.showAlertSuccessfulRegistration}
+                handleCloseAlertSuccessfulRegistration={this.handleCloseAlertSuccessfulRegistration}
                 />
                 <RegisterComponent 
                 isOpenedRegisterModal={this.state.isOpenedRegisterModal} 
